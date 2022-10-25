@@ -1,1 +1,2 @@
-export { sum } from './sum';
+export { Box } from "./box";
+export { sum } from "./sum";
