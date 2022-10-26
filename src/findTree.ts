@@ -1,6 +1,6 @@
 import { forEachRight } from './forEachRight';
 
-export function findTree<T extends Record<string, any>>(
+export function findTree<T>(
   iteratee: (node: T) => boolean | void,
   tree: T[],
   childrenKey: string = 'children'
@@ -12,7 +12,7 @@ export function findTree<T extends Record<string, any>>(
   }, tree);
 
   while (stack.length) {
-    const node = stack.pop()!;
+    const node: any = stack.pop()!;
 
     if (iteratee(node)) {
       return node;
