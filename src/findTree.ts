@@ -1,4 +1,4 @@
-import { forEachRight } from "./forEachRight";
+import { forEachRight } from './forEachRight';
 
 export function findTree<T extends Record<string, any>>(
   iteratee: (node: T) => boolean | void,

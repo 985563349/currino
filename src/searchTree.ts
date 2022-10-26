@@ -1,7 +1,7 @@
 export function searchTree<T extends Record<string, any>>(
   iteratee: (node: T) => boolean,
   tree: T[],
-  childrenKey: string = "children"
+  childrenKey: string = 'children'
 ): T[] {
   const result: T[] = [];
 
