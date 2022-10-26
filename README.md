@@ -9,16 +9,34 @@ JavaScript utility library
 
 ## 📦 Install
 
+Using npm:
+
 ```bash
-$ npm install --save jee-utils
-# or
-$ yarn add jee-utils
-# or
-$ pnpm add jee-utils
+$ npm install jee-utils
+```
+
+Using unpkg CDN:
+
+```html
+<script src="https://unpkg.com/jee-utils@0.0.1/dist/jee-utils.iife.js"></script>
 ```
 
 ## 🔨 Usage
 
+ESM:
+
 ```javascript
 import { sum } from 'jee-utils';
+```
+
+Node.JS:
+
+```javascript
+const { sum } = require('jee-utils');
+```
+
+Browser:
+
+```javascript
+JeeUtils.sum(1, 1);
 ```
