@@ -18,7 +18,7 @@ $ npm install jee-utils
 Using unpkg CDN:
 
 ```html
-<script src="https://unpkg.com/jee-utils@0.0.1/dist/jee-utils.iife.js"></script>
+<script src="https://unpkg.com/jee-utils@0.0.1-beta/dist/jee-utils.iife.js"></script>
 ```
 
 ## 🔨 Usage
