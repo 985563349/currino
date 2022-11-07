@@ -1,5 +1,6 @@
 export { Box } from './box';
 export { Maybe } from './maybe';
+export { forEach } from './forEach';
 export { forEachRight } from './forEachRight';
 export { findTree } from './findTree';
 export { mapTree } from './mapTree';
