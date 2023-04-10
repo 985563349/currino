@@ -1,16 +1,16 @@
-import type { Key, DeepMappingKey } from './types/common';
+import type { AllowedKeyType, DeepMappingKey } from './types/common';
 import { mapKeys } from './mapKeys';
 
-export function mapTree<T extends Record<Key, any>, M extends (node: T) => Record<Key, any>>(
-  mapping: M,
-  childrenKey: Key,
-  root: T
-): ReturnType<M>;
-export function mapTree<T extends Record<Key, any>, M extends Partial<Record<keyof T, Key>>>(
-  mapping: M,
-  childrenKey: Key,
-  root: T
-): DeepMappingKey<T, M>;
+export function mapTree<
+  T extends Record<AllowedKeyType, any>,
+  R extends DeepMappingKey<T, M>,
+  M extends Partial<Record<keyof T, AllowedKeyType>> = Partial<Record<keyof T, AllowedKeyType>>
+>(mapping: M, childrenKey: AllowedKeyType, root: T): R;
+export function mapTree<
+  T extends Record<AllowedKeyType, any>,
+  R extends ReturnType<M>,
+  M extends (node: T) => Record<AllowedKeyType, any> = (node: T) => Record<AllowedKeyType, any>
+>(mapping: M, childrenKey: AllowedKeyType, root: T): R;
 
 export function mapTree(mapping: any, childrenKey: any, root: any) {
   const result = typeof mapping === 'function' ? mapping(root) : mapKeys(mapping, root);

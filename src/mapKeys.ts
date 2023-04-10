@@ -1,10 +1,15 @@
-import type { ObjectIterator, Key, MappingKey } from './types/common';
+import type { ObjectIterator, AllowedKeyType, MappingKey } from './types/common';
 
-export function mapKeys<T, M extends Key>(mapping: ObjectIterator<T, M>, data: T): Record<Key, any>;
-export function mapKeys<T, M extends Partial<Record<keyof T, Key>>>(
-  mapping: M,
-  data: T
-): MappingKey<T, M>;
+export function mapKeys<
+  T,
+  R extends MappingKey<T, M>,
+  M extends Partial<Record<keyof T, AllowedKeyType>> = Partial<Record<keyof T, AllowedKeyType>>
+>(mapping: M, data: T): R;
+export function mapKeys<
+  T,
+  R extends Record<ReturnType<M>, any>,
+  M extends ObjectIterator<T, AllowedKeyType> = ObjectIterator<T, AllowedKeyType>
+>(mapping: M, data: T): R;
 
 export function mapKeys(mapping: any, data: any) {
   const object = Object(data);

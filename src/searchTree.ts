@@ -1,6 +1,6 @@
-import { Key } from './types/common';
+import { AllowedKeyType } from './types/common';
 
-export function searchTree<T extends Record<Key, any>>(
+export function searchTree<T extends Record<AllowedKeyType, any>>(
   predicate: (node: T) => boolean,
   childrenKey: keyof T,
   root: T

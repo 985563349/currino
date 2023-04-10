@@ -1,7 +1,7 @@
-import type { Key } from './types/common';
+import type { AllowedKeyType } from './types/common';
 import { forEachRight } from './forEachRight';
 
-export function findTree<T extends Record<Key, any>>(
+export function findTree<T extends Record<AllowedKeyType, any>>(
   predicate: (node: T) => boolean | void,
   childrenKey: keyof T,
   root: T
