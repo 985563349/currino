@@ -43,71 +43,67 @@ JeeUtils.sum(1, 1);
 
 ## 📚 API
 
-### 集合
+### （类）数组
 
 #### forEach
 
 ```javascript
-forEach(iteratee, collection);
+forEach(iteratee, arrayLink);
 ```
 
-调用 `iteratee` 遍历 `collection`（集合）中的每个元素， iteratee 调用 3 个参数： (value, index|key, collection)。 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。
+调用 `iteratee` 遍历 `arrayLink` 中的每个元素， iteratee 调用 3 个参数： (value, index, arrayLink)。 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。
 
 **参数**
 
 iteratee (Function): 每次迭代调用的函数。
 
-collection (Array|Object): 一个用来迭代的集合。
+arrayLink (ArrayLink): 一个用来迭代的（类）数组。
 
 **返回**
 
-(\*): 返回集合 `collection`。
+(\*): 返回（类）数组 `arrayLink`。
 
 **示例**
 
 ```javascript
-forEach((value) => {
-  console.log(value);
-}, [1, 2]);
+forEach(
+  (value) => {
+    console.log(value);
+  },
+  [1, 2]
+);
 // => 输出 '1' 和 '2'。
-
-forEach((value, key) => {
-  console.log(key);
-}, { a: 1, b: 2 });
-
-// => 输出 'a' 和 'b' (不保证迭代顺序)。
 ```
-
-
 
 #### forEachRight
 
 ```javascript
-forEachRight(iteratee, collection);
+forEachRight(iteratee, arrayLink);
 ```
 
-这个方法类似 `forEach`，不同之处在于，`forEachRight`是从右到左遍历集合中的每一个元素。
+这个方法类似 `forEach`，不同之处在于，`forEachRight`是从右到左遍历每一个元素。
 
 **参数**
 
 iteratee (Function): 每次迭代调用的函数。
 
-collection (Array|Object): 一个用来迭代的集合。
+arrayLink (ArrayLink): 一个用来迭代的（类）数组。
 
 **返回**
 
-(\*): 返回集合 `collection`。
+(\*): 返回（类）数组 `arrayLink`。
 
 **示例**
 
 ```javascript
-forEachRight((value) => {
-  console.log(value);
-}, [1, 2]);
+forEachRight(
+  (value) => {
+    console.log(value);
+  },
+  [1, 2]
+);
 // => 输出 '2' 和 '1'。
 ```
-
-
 
 ### 对象
 
@@ -117,11 +113,11 @@ forEachRight((value) => {
 mapKeys(mapping, object);
 ```
 
-这个方法创建一个对象，对象的值与`object`相同，并且key是通过`mapping`每个自身可枚举属性的字符串产生的。如果`mapping`是个函数，那么它调用 3 个参数：(value, key, object)。
+这个方法创建一个对象，对象的值与`object`相同，并且 key 是通过`mapping`每个自身可枚举属性的字符串产生的。如果`mapping`是个函数，那么它调用 3 个参数：(value, key, object)。
 
 **参数**
 
-mapping (Object|Function): 每次迭代时获取key的映射。
+mapping (Object|Function): 每次迭代时获取 key 的映射。
 
 object (Object): 一个用来迭代的对象。
 
@@ -135,13 +131,14 @@ object (Object): 一个用来迭代的对象。
 mapKeys({ b: 'c' }, { a: 1, b: 2 });
 // => { a: 1, c: 2 }
 
-mapKeys((value, key) => {
-  return key + value;
-}, { a: 1, b: 2 })
+mapKeys(
+  (value, key) => {
+    return key + value;
+  },
+  { a: 1, b: 2 }
+);
 // => { a1: 1, a2: 2 }
 ```
-
-
 
 #### pickValues
 
@@ -167,8 +164,6 @@ object (Object): 一个用来迭代的对象。
 pickValues(['a', 'c'], { a: 1, b: 2, c: 3 });
 // => [1, 3]
 ```
-
-
 
 ### 时间
 
@@ -197,8 +192,6 @@ dateFormat('YYYY-MM-DD HH:mm:ss', 1678864849921);
 // => 2023-03-15 15:20:49
 ```
 
-
-
 #### dateValueOf
 
 ```javascript
@@ -224,14 +217,12 @@ dateValueOf('YYYY-MM-DD HH:mm:ss', '2023-03-15 15:20:49');
 // => 1678864849921
 ```
 
-
-
 ### 树
 
 #### dfs
 
 ```javascript
-dfs(iteratee, childrenKey, tree)
+dfs(iteratee, childrenKey, tree);
 ```
 
 以深度优先的方式，调用 `iteratee` 遍历 `tree`（集合） 中的每个节点， iteratee 调用 3 个参数： (node, path, tree)。 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。
@@ -256,26 +247,26 @@ const tree = {
   children: [
     {
       id: 2,
-      children: [
-        { id: 4 }
-      ]
+      children: [{ id: 4 }],
     },
-    { id: 3 }
-  ]
+    { id: 3 },
+  ],
 };
 
-dfs((node) => {
-  console.log(node);
-}, 'children', tree);
+dfs(
+  (node) => {
+    console.log(node);
+  },
+  'children',
+  tree
+);
 // => 依次输出 { id: 1 } 、{ id: 2 } 、{ id: 4 } 、{ id: 3 }。
 ```
-
-
 
 #### bfs
 
 ```javascript
-bfs(iteratee, childrenKey, tree)
+bfs(iteratee, childrenKey, tree);
 ```
 
 这个方法类似 `dfs`，不同之处在于，`bfs`是以广度优先的方式遍历每一个节点。
@@ -300,21 +291,21 @@ const tree = {
   children: [
     {
       id: 2,
-      children: [
-        { id: 4 }
-      ]
+      children: [{ id: 4 }],
     },
-    { id: 3 }
-  ]
+    { id: 3 },
+  ],
 };
 
-bfs((node) => {
-  console.log(node);
-}, 'children', tree);
+bfs(
+  (node) => {
+    console.log(node);
+  },
+  'children',
+  tree
+);
 // => 依次输出 { id: 1 } 、{ id: 2 } 、{ id: 3 } 、{ id: 4 }。
 ```
-
-
 
 #### findTree
 
@@ -322,7 +313,7 @@ bfs((node) => {
 findTree(predicate, childrenKey, tree);
 ```
 
-遍历 `tree`（树）节点，返回 `predicate`（断言函数）第一个返回真值的第一个元素。predicate调用3个参数： (node, path,  tree)。
+遍历 `tree`（树）节点，返回 `predicate`（断言函数）第一个返回真值的第一个元素。predicate 调用 1 个参数： (node)。
 
 **参数**
 
@@ -341,24 +332,20 @@ tree (Object): 一个用来迭代的树。
 ```javascript
 const tree = {
   id: 1,
-  children: [
-    { id: 2 }
-  ]
+  children: [{ id: 2 }],
 };
 
 findTree((node) => node.id === 2, 'children', tree);
 // => 输出 { id: 2 }。
 ```
 
-
-
 #### mapTree
 
 ```javascript
-mapTree(predicate, childrenKey, tree);
+mapTree(iteratee, childrenKey, tree);
 ```
 
-创建一个树，节点是`iteratee`遍历`tree`中的每个节点后返回的结果。iteratee调用三个参数：(node, path,  tree)。
+创建一个树，节点是`iteratee`遍历`tree`中的每个节点后返回的结果。iteratee 调用 1 个参数：(node)。
 
 **参数**
 
@@ -377,16 +364,12 @@ tree (Object): 一个用来迭代的树。
 ```javascript
 const tree = {
   id: 1,
-  children: [
-    { id: 2 }
-  ]
+  children: [{ id: 2 }],
 };
 
 mapTree((node) => ({ key: node.id, children: node.children }), 'children', tree);
 // => 输出 { key: 1, children: [{ key: 2 }] }。
 ```
-
-
 
 #### searchTree
 
@@ -394,7 +377,7 @@ mapTree((node) => ({ key: node.id, children: node.children }), 'children', tree)
 searchTree(predicate, childrenKey, tree);
 ```
 
-遍历 `tree`（树）节点，返回 `predicate`（断言函数）所有匹配节点的路径。predicate调用3个参数： (node, path,  tree)。
+遍历 `tree`（树）节点，返回 `predicate`（断言函数）所有匹配节点的路径。predicate 调用 1 个参数： (node)。
 
 **参数**
 
@@ -415,20 +398,16 @@ const tree = {
   id: 1,
   children: [
     { id: 2 },
-    { 
+    {
       id: 3,
-     	children: [
-        { id: 4 }
-      ] 
-    }
-  ]
+      children: [{ id: 4 }],
+    },
+  ],
 };
 
 searchTree((node) => node.id === 4, 'children', tree);
 // => 输出 { id: 1, children: [{ id: 3, children: [{ id: 4 }] }] }。
 ```
-
-
 
 ### 函子
 
@@ -438,11 +417,11 @@ searchTree((node) => node.id === 4, 'children', tree);
 Functor(value);
 ```
 
-创建一个Functor。
+创建一个 Functor。
 
 **参数**
 
-value (*): 容器内的值。
+value (\*): 容器内的值。
 
 **返回**
 
@@ -451,11 +430,11 @@ value (*): 容器内的值。
 **示例**
 
 ```javascript
-Functor(1).map(x => x + 1).fold(x => x);
+Functor(1)
+  .map((x) => x + 1)
+  .fold((x) => x);
 // => 2
 ```
-
-
 
 #### Maybe
 
@@ -463,7 +442,7 @@ Functor(1).map(x => x + 1).fold(x => x);
 
 **参数**
 
-value (*): 容器内的值。
+value (\*): 容器内的值。
 
 **返回**
 
@@ -472,11 +451,11 @@ value (*): 容器内的值。
 **示例**
 
 ```javascript
-Functor(1).map(x => x + 1).fold(x => x);
+Functor(1)
+  .map((x) => x + 1)
+  .fold((x) => x);
 // => 2
 ```
-
-
 
 #### Either
 
@@ -484,9 +463,9 @@ Either 内部有两个值：左值（`Left`）和右值（`Right`）。右值是
 
 **参数**
 
-left (*): 左值。
+left (\*): 左值。
 
-right (*): 右值。
+right (\*): 右值。
 
 **返回**
 
@@ -495,10 +474,13 @@ right (*): 右值。
 **示例**
 
 ```javascript
-Either(1, 2).map(x => x + 1).fold(x => x);
+Either(1, 2)
+  .map((x) => x + 1)
+  .fold((x) => x);
 // => 3
 
-Either(1, null).map(x => x + 1).fold(x => x);
+Either(1, null)
+  .map((x) => x + 1)
+  .fold((x) => x);
 // => 2
 ```
-
