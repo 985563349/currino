@@ -1,25 +1,26 @@
-export function searchTree<T>(
+import { Key } from './types/common';
+
+export function searchTree<T extends Record<Key, any>>(
   iteratee: (node: T) => boolean,
-  tree: T[],
-  childrenKey: string = 'children'
-): T[] {
-  const result: T[] = [];
-
-  for (let i = 0; i < tree.length; i++) {
-    const node: any = tree[i];
-
-    if (iteratee(node)) {
-      result.push(node);
-      continue;
-    }
-
-    if (Array.isArray(node[childrenKey])) {
-      const children = searchTree(iteratee, node[childrenKey], childrenKey);
-      if (children.length > 0) {
-        result.push({ ...node, [childrenKey]: children });
-      }
-    }
+  childrenKey: keyof T,
+  root: T
+): T | null {
+  if (iteratee(root)) {
+    return root;
   }
 
-  return result;
+  if (Array.isArray(root[childrenKey])) {
+    const children: T[] = [];
+
+    for (let i = 0; i < root[childrenKey].length; i++) {
+      const current = searchTree(iteratee, childrenKey, root[childrenKey][i]);
+      if (current) {
+        children.push(current);
+      }
+    }
+
+    return children.length > 0 ? { ...root, children } : null;
+  }
+
+  return null;
 }

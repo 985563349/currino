@@ -1,32 +1,20 @@
-import {
-  Dictionary,
-  List,
-  ListIteratee,
-  NotVoid,
-  ObjectIteratee,
-} from './types/common';
+import type { ObjectIterator, Key, MappingKey } from './types/common';
 
-export function mapKeys<T>(
-  template: Record<number, NotVoid> | ListIteratee<T>,
-  data: List<T>
-): Dictionary<T>;
+export function mapKeys<T, M extends Key>(mapping: ObjectIterator<T, M>, data: T): Record<Key, any>;
+export function mapKeys<T, M extends Partial<Record<keyof T, Key>>>(
+  mapping: M,
+  data: T
+): MappingKey<T, M>;
 
-export function mapKeys<T extends object>(
-  template: Record<keyof T, NotVoid> | ObjectIteratee<T>,
-  data: T | null | undefined
-): Dictionary<T[keyof T]>;
-
-export function mapKeys(template: any, data: any) {
+export function mapKeys(mapping: any, data: any) {
   const object = Object(data);
 
-  const result: any = {};
+  const result: Record<string, any> = {};
 
   Object.keys(object).forEach((key) => {
     const value = object[key];
     const newKey =
-      typeof template === 'function'
-        ? template(value, key, object)
-        : template[key];
+      (typeof mapping === 'function' ? mapping(value, key, object) : mapping[key]) ?? key;
     result[newKey] = value;
   });
 

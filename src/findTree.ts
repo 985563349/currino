@@ -1,18 +1,15 @@
+import type { Key } from './types/common';
 import { forEachRight } from './forEachRight';
 
-export function findTree<T>(
+export function findTree<T extends Record<Key, any>>(
   iteratee: (node: T) => boolean | void,
-  tree: T[],
-  childrenKey: string = 'children'
+  childrenKey: keyof T,
+  root: T
 ): T | null {
-  const stack: T[] = [];
-
-  forEachRight((item) => {
-    stack.push(item);
-  }, tree);
+  const stack: T[] = [root];
 
   while (stack.length) {
-    const node: any = stack.pop()!;
+    const node = stack.pop()!;
 
     if (iteratee(node)) {
       return node;

@@ -12,9 +12,7 @@ describe('mapKeys', () => {
   });
 
   test('should map keys to new objects (by function)', () => {
-    expect(
-      mapKeys((_, key) => (key === 'id' ? 'value' : key), object)
-    ).toStrictEqual({
+    expect(mapKeys((_, key) => (key === 'id' ? 'value' : key), object)).toStrictEqual({
       value: 0,
       name: 'jee',
     });

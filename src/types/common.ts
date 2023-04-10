@@ -1,36 +1,23 @@
-export type NotVoid = unknown;
+export type Key = string | number | symbol;
 
-export type PropertyName = string | number | symbol;
-
-export type List<T> = ArrayLike<T>;
-
-export interface Dictionary<T> {
-  [index: string]: T;
-}
-
-export type PartialShallow<T> = {
-  [P in keyof T]?: T[P] extends object ? object : T[P];
+export type MappingKey<T, M extends Partial<Record<keyof T, Key>>> = {
+  [P in keyof T as P extends keyof M ? (M[P] extends Key ? M[P] : never) : P]: T[P];
 };
 
-export type ListIterator<T, R> = (
-  value: T,
-  index: number,
-  collection: List<T>
-) => R;
+export type DeepMappingKey<T, M extends Partial<Record<keyof T, Key>>> = {
+  [P in keyof T as P extends keyof M ? (M[P] extends Key ? M[P] : never) : P]: T[P] extends object
+    ? T[P] extends Function
+      ? T[P]
+      : M extends Partial<Record<keyof T[P], Key>>
+      ? DeepMappingKey<T[P], M>
+      : T[P] extends Array<infer Rest>
+      ? M extends Partial<Record<keyof Rest, Key>>
+        ? Array<DeepMappingKey<Rest, M>>
+        : T[P]
+      : T[P]
+    : T[P];
+};
 
-export type ObjectIterator<T, R> = (
-  value: T[keyof T],
-  key: string,
-  collection: T
-) => R;
+export type ArrayLikeIterator<T, R> = (value: T, index: number, array: ArrayLike<T>) => R;
 
-export type IterateeShorthand<T> =
-  | PropertyName
-  | [PropertyName, any]
-  | PartialShallow<T>;
-
-export type ListIteratee<T> = ListIterator<T, NotVoid> | IterateeShorthand<T>;
-
-export type ObjectIteratee<T> =
-  | ObjectIterator<T, NotVoid>
-  | IterateeShorthand<T[keyof T]>;
+export type ObjectIterator<T, R> = (value: T[keyof T], key: string, object: T) => R;

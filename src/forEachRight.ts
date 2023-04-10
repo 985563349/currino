@@ -1,14 +1,13 @@
-export function forEachRight<T>(
-  iteratee: (item: T, index: number, array: T[]) => boolean | void,
-  array: T[]
-) {
-  let i = array.length;
+import type { ArrayLikeIterator } from './types/common';
+
+export function forEachRight<T>(iteratee: ArrayLikeIterator<T, any>, arrayLink: ArrayLike<T>) {
+  let i = arrayLink?.length ?? 0;
 
   while (i--) {
-    if (iteratee(array[i], i, array) === false) {
+    if (iteratee(arrayLink[i], i, arrayLink) === false) {
       break;
     }
   }
 
-  return array;
+  return arrayLink;
 }
