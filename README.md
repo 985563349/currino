@@ -43,7 +43,7 @@ JeeUtils.sum(1, 1);
 
 ## 📚 API
 
-### （类）数组
+### 列表
 
 #### forEach
 
@@ -57,11 +57,11 @@ forEach(iteratee, arrayLink);
 
 iteratee (Function): 每次迭代调用的函数。
 
-arrayLink (ArrayLink): 一个用来迭代的（类）数组。
+arrayLink (ArrayLink): 一个用来迭代的列表。
 
 **返回**
 
-(\*): 返回（类）数组 `arrayLink`。
+(\*): 返回列表 `arrayLink`。
 
 **示例**
 
@@ -87,11 +87,11 @@ forEachRight(iteratee, arrayLink);
 
 iteratee (Function): 每次迭代调用的函数。
 
-arrayLink (ArrayLink): 一个用来迭代的（类）数组。
+arrayLink (ArrayLink): 一个用来迭代的列表。
 
 **返回**
 
-(\*): 返回（类）数组 `arrayLink`。
+(\*): 返回列表 `arrayLink`。
 
 **示例**
 
