@@ -1,19 +1,19 @@
 {
-  "name": "jee-utils",
+  "name": "currino",
   "version": "0.0.2",
-  "description": "jee-utils",
+  "description": "currino",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "dist/jee-utils.umd.cjs",
-  "unpkg": "dist/jee-utils.iife.js",
-  "jsdelivr": "dist/jee-utils.iife.js",
-  "module": "./dist/jee-utils.js",
+  "main": "dist/currino.umd.cjs",
+  "unpkg": "dist/currino.iife.js",
+  "jsdelivr": "dist/currino.iife.js",
+  "module": "./dist/currino.js",
   "exports": {
     ".": {
-      "import": "./dist/jee-utils.js",
-      "require": "./dist/jee-utils.umd.cjs"
+      "import": "./dist/currino.js",
+      "require": "./dist/currino.umd.cjs"
     }
   },
   "types": "./dist/types/index.d.ts",
@@ -25,14 +25,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/985563349/jee-utils.git"
+    "url": "git+https://github.com/985563349/currino.git"
   },
   "keywords": [
-    "jee-utils"
+    "currino"
   ],
   "author": "Jee",
   "license": "MIT",
-  "homepage": "https://github.com/985563349/jee-utils#readme",
+  "homepage": "https://github.com/985563349/currino#readme",
   "devDependencies": {
     "@types/node": "^18.11.3",
     "conventional-changelog-cli": "^2.2.2",

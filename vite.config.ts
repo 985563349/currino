@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'JeeUtils',
+      name: 'Currino',
       formats: ['es', 'umd', 'iife'],
     },
   },

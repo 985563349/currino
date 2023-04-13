@@ -1,24 +1,24 @@
-# Jee Utils
+# Currino
 
-[![npm version](https://img.shields.io/npm/v/jee-utils.svg?style=flat-square)](https://www.npmjs.com/package/jee-utils)
-[![npm downloads](https://img.shields.io/npm/dm/jee-utils.svg?style=flat-square)](http://npm-stat.com/charts.html?package=jee-utils)
-[![gzip size: JS](http://img.badgesize.io/https://unpkg.com/jee-utils/dist/jee-utils.umd.cjs?compression=gzip&label=gzip%20size:%20JS)](https://unpkg.com/jee-utils/dist/jee-utils.umd.cjs)
+[![npm version](https://img.shields.io/npm/v/currino.svg?style=flat-square)](https://www.npmjs.com/package/currino)
+[![npm downloads](https://img.shields.io/npm/dm/currino.svg?style=flat-square)](http://npm-stat.com/charts.html?package=currino)
+[![gzip size: JS](http://img.badgesize.io/https://unpkg.com/currino/dist/currino.umd.cjs?compression=gzip&label=gzip%20size:%20JS)](https://unpkg.com/currino/dist/currino.umd.cjs)
 [![npm license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 
-JavaScript utility library
+函数式风格的 TypeScript 实用工具库
 
 ## 📦 安装
 
 通过 npm:
 
 ```bash
-npm install jee-utils
+npm install currino
 ```
 
 通过 unpkg CDN:
 
 ```html
-<script src="https://unpkg.com/jee-utils@0.0.2/dist/jee-utils.iife.js"></script>
+<script src="https://unpkg.com/currino@0.0.2/dist/currino.iife.js"></script>
 ```
 
 ## 🔨 使用
@@ -26,19 +26,19 @@ npm install jee-utils
 ESM:
 
 ```javascript
-import { sum } from 'jee-utils';
+import { sum } from 'currino';
 ```
 
 Node.JS:
 
 ```javascript
-const { sum } = require('jee-utils');
+const { sum } = require('currino');
 ```
 
 Browser:
 
 ```javascript
-JeeUtils.sum(1, 1);
+Currino.sum(1, 1);
 ```
 
 ## 📚 API
