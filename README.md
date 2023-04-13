@@ -367,13 +367,13 @@ searchTree((node) => node.id === 4, 'children', tree);
 
 ### 函子
 
-#### Functor
+#### Identity
 
 ```javascript
-Functor(value);
+Identity(value);
 ```
 
-创建一个 Functor。
+创建一个基础 Functor。
 
 **参数**
 
@@ -386,7 +386,7 @@ value (\*): 容器内的值。
 **示例**
 
 ```javascript
-Functor(1)
+Identity(1)
   .map((x) => x + 1)
   .fold((x) => x);
 // => 2
@@ -394,7 +394,7 @@ Functor(1)
 
 #### Maybe
 
-这个方法类似`Functor`，不同之处在于，`Maybe`可以处理空值。
+这个方法类似 `Identity` ，不同之处在于，`Maybe` 可以处理空值。
 
 **参数**
 
@@ -407,10 +407,10 @@ value (\*): 容器内的值。
 **示例**
 
 ```javascript
-Functor(1)
+Maybe(null)
   .map((x) => x + 1)
   .fold((x) => x);
-// => 2
+// => null
 ```
 
 #### Either
