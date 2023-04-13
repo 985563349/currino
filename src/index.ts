@@ -6,5 +6,5 @@ export { eachTree } from './eachTree';
 export { findTree } from './findTree';
 export { mapTree } from './mapTree';
 export { searchTree } from './searchTree';
-export { Box } from './box';
+export { Identity } from './identity';
 export { Maybe } from './maybe';
