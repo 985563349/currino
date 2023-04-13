@@ -219,10 +219,10 @@ dateValueOf('YYYY-MM-DD HH:mm:ss', '2023-03-15 15:20:49');
 
 ### 树
 
-#### dfs
+#### eachTree
 
 ```javascript
-dfs(iteratee, childrenKey, tree);
+eachTree(iteratee, childrenKey, tree);
 ```
 
 以深度优先的方式，调用 `iteratee` 遍历 `tree`（集合） 中的每个节点， iteratee 调用 3 个参数： (node, path, tree)。 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。
@@ -253,7 +253,7 @@ const tree = {
   ],
 };
 
-dfs(
+eachTree(
   (node) => {
     console.log(node);
   },
@@ -261,50 +261,6 @@ dfs(
   tree
 );
 // => 依次输出 { id: 1 } 、{ id: 2 } 、{ id: 4 } 、{ id: 3 }。
-```
-
-#### bfs
-
-```javascript
-bfs(iteratee, childrenKey, tree);
-```
-
-这个方法类似 `dfs`，不同之处在于，`bfs`是以广度优先的方式遍历每一个节点。
-
-**参数**
-
-iteratee (Function): 每次迭代调用的函数。
-
-childrenKey (string): 子节点属性名。
-
-tree (Object): 一个用来迭代的树。
-
-**返回**
-
-(\*): 返回树 `tree`。
-
-**示例**
-
-```javascript
-const tree = {
-  id: 1,
-  children: [
-    {
-      id: 2,
-      children: [{ id: 4 }],
-    },
-    { id: 3 },
-  ],
-};
-
-bfs(
-  (node) => {
-    console.log(node);
-  },
-  'children',
-  tree
-);
-// => 依次输出 { id: 1 } 、{ id: 2 } 、{ id: 3 } 、{ id: 4 }。
 ```
 
 #### findTree

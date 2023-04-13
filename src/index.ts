@@ -1,9 +1,10 @@
-export { Box } from './box';
-export { Maybe } from './maybe';
+export { sum } from './sum';
 export { forEach } from './forEach';
 export { forEachRight } from './forEachRight';
+export { mapKeys } from './mapKeys';
+export { eachTree } from './eachTree';
 export { findTree } from './findTree';
 export { mapTree } from './mapTree';
-export { mapKeys } from './mapKeys';
 export { searchTree } from './searchTree';
-export { sum } from './sum';
+export { Box } from './box';
+export { Maybe } from './maybe';
