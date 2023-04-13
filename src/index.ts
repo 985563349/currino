@@ -8,3 +8,4 @@ export { mapTree } from './mapTree';
 export { searchTree } from './searchTree';
 export { Identity } from './identity';
 export { Maybe } from './maybe';
+export { curry } from './curry';

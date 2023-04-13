@@ -5,11 +5,7 @@ export type MappingKey<T, M extends Partial<Record<keyof T, AllowedKeyType>>> = 
 };
 
 export type DeepMappingKey<T, M extends Partial<Record<keyof T, AllowedKeyType>>> = {
-  [P in keyof T as P extends keyof M
-    ? M[P] extends AllowedKeyType
-      ? M[P]
-      : never
-    : P]: T[P] extends Array<infer Rest>
+  [P in keyof T as P extends keyof M ? (M[P] extends AllowedKeyType ? M[P] : never) : P]: T[P] extends Array<infer Rest>
     ? M extends Partial<Record<keyof Rest, AllowedKeyType>>
       ? Array<DeepMappingKey<Rest, M>>
       : T[P] extends object
