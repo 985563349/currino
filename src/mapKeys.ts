@@ -1,17 +1,33 @@
 import type { ObjectIterator, AllowedKeyType, MappingKey } from './types/common';
+import { curry } from './curry';
 
-export function mapKeys<
-  T,
-  R extends MappingKey<T, M>,
-  M extends Partial<Record<keyof T, AllowedKeyType>> = Partial<Record<keyof T, AllowedKeyType>>
->(mapping: M, data: T): R;
-export function mapKeys<
-  T,
-  R extends Record<ReturnType<M>, any>,
-  M extends ObjectIterator<T, AllowedKeyType> = ObjectIterator<T, AllowedKeyType>
->(mapping: M, data: T): R;
+type MapKeysMapping<T> = Partial<Record<keyof T, AllowedKeyType>>;
+type MapKeysIterator<T> = ObjectIterator<T, AllowedKeyType>;
 
-export function mapKeys(mapping: any, data: any) {
+interface CurrinoMapKeys {
+  <
+    T extends object,
+    R extends MappingKey<T, M>,
+    M extends MapKeysMapping<T> = MapKeysMapping<T>
+  >(mapping: M, data: T): R;
+  <
+    T extends object,
+    R extends MappingKey<T, M>,
+    M extends MapKeysMapping<T> = MapKeysMapping<T>
+  >(mapping: M): (data: T) => R;
+  <
+    T extends object,
+    R extends Record<ReturnType<I>, any>,
+    I extends MapKeysIterator<T> = MapKeysIterator<T>
+  >(iterator: I, data: T): R;
+  <
+    T extends object,
+    R extends Record<ReturnType<I>, any>,
+    I extends MapKeysIterator<T> = MapKeysIterator<T>
+  >(iterator: I): (data: T) => R;
+}
+
+export const mapKeys: CurrinoMapKeys = curry((mapping: any, data: any) => {
   const object = Object(data);
 
   const result: Record<string, any> = {};
@@ -24,4 +40,4 @@ export function mapKeys(mapping: any, data: any) {
   });
 
   return result;
-}
+});

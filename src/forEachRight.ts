@@ -1,6 +1,12 @@
 import type { ArrayLikeIterator } from './types/common';
+import { curry } from './curry'
 
-export function forEachRight<T>(iteratee: ArrayLikeIterator<T, any>, arrayLink: ArrayLike<T>) {
+interface CurrinoForEachRight {
+  <T>(iteratee: ArrayLikeIterator<T, any>, arrayLink: ArrayLike<T>): ArrayLike<T>;
+  <T>(iteratee: ArrayLikeIterator<T, any>): (arrayLink: ArrayLike<T>) => ArrayLike<T>;
+}
+
+export const forEachRight: CurrinoForEachRight = curry((iteratee: any, arrayLink: any) => {
   let i = arrayLink?.length ?? 0;
 
   while (i--) {
@@ -10,4 +16,4 @@ export function forEachRight<T>(iteratee: ArrayLikeIterator<T, any>, arrayLink: 
   }
 
   return arrayLink;
-}
+});
