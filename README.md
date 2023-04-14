@@ -140,31 +140,6 @@ mapKeys(
 // => { a1: 1, a2: 2 }
 ```
 
-#### pickValues
-
-```javascript
-pickValues(props, object);
-```
-
-创建一个从 `object` 中选中的属性的值的数组。
-
-**参数**
-
-props (...(string|string[])): 要选中的属性。
-
-object (Object): 一个用来迭代的对象。
-
-**返回**
-
-(\*): 返回属性值数组。
-
-**示例**
-
-```javascript
-pickValues(['a', 'c'], { a: 1, b: 2, c: 3 });
-// => [1, 3]
-```
-
 ### 时间
 
 #### dateFormat
