@@ -3,9 +3,18 @@ import { forEach } from './forEach';
 import { curry } from './curry';
 
 interface CurrinoEachTree {
+  <T extends Record<AllowedKeyType, any>>(iteratee: GraphIteratee<T, boolean | void>): CurrinoEachTree1x1<T>;
+  <T extends Record<AllowedKeyType, any>>(iteratee: GraphIteratee<T, boolean | void>, childrenKey: AllowedKeyType): CurrinoEachTree1x2<T>;
   <T extends Record<AllowedKeyType, any>>(iteratee: GraphIteratee<T, boolean | void>, childrenKey: AllowedKeyType, root: T): T;
-  <T extends Record<AllowedKeyType, any>>(iteratee: GraphIteratee<T, boolean | void>, childrenKey: AllowedKeyType): (root: T) => T;
-  <T extends Record<AllowedKeyType, any>>(iteratee: GraphIteratee<T, boolean | void>): (childrenKey: AllowedKeyType) => (root: T) => T;
+}
+
+interface CurrinoEachTree1x1<T> {
+  (children: AllowedKeyType): CurrinoEachTree1x2<T>;
+  (children: AllowedKeyType, root: T): T;
+}
+
+interface CurrinoEachTree1x2<T> {
+  (root: T): T;
 }
 
 export const eachTree: CurrinoEachTree = curry((iteratee: any, childrenKey: any, root: any) => {

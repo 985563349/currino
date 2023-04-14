@@ -1,21 +1,23 @@
 export type AllowedKeyType = keyof any;
 
-export type MappingKey<T, M extends Partial<Record<keyof T, AllowedKeyType>>> = {
+export type ExtractNullable<T> = T extends null | undefined ? T : never;
+
+export type MappingKeys<T, M extends Partial<Record<keyof T, AllowedKeyType>>> = {
   [P in keyof T as P extends keyof M ? (M[P] extends AllowedKeyType ? M[P] : never) : P]: T[P];
 };
 
-export type DeepMappingKey<T, M extends Partial<Record<keyof T, AllowedKeyType>>> = {
-  [P in keyof T as P extends keyof M ? (M[P] extends AllowedKeyType ? M[P] : never) : P]: T[P] extends Array<infer Rest>
-    ? M extends Partial<Record<keyof Rest, AllowedKeyType>>
-      ? Array<DeepMappingKey<Rest, M>>
-      : T[P] extends object
+export type DeepMappingKeys<T, M extends Partial<Record<keyof T, AllowedKeyType>>> = {
+  [P in keyof T as P extends keyof M ? (M[P] extends AllowedKeyType ? M[P] : never): P]: NonNullable<T[P]> extends Array<infer Elem>
+    ? M extends Partial<Record<keyof Elem, AllowedKeyType>>
+      ? Array<DeepMappingKeys<Elem, M>> | ExtractNullable<T[P]>
+      : T[P]
+    : NonNullable<T[P]> extends object
       ? T[P] extends Function
         ? T[P]
         : M extends Partial<Record<keyof T[P], AllowedKeyType>>
-        ? DeepMappingKey<T[P], M>
-        : T[P]
-      : T[P]
-    : T[P];
+          ? DeepMappingKeys<T[P], M> | ExtractNullable<T[P]>
+          : T[P]
+    : T[P]
 };
 
 export type ArrayLikeIteratee<T, R> = (value: T, index: number, array: ArrayLike<T>) => R;
