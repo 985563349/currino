@@ -1,18 +1,20 @@
 import type { AllowedKeyType, DeepMappingKey } from './types/common';
+import { curry } from './curry';
 import { mapKeys } from './mapKeys';
 
-export function mapTree<
-  T extends Record<AllowedKeyType, any>,
-  R extends DeepMappingKey<T, M>,
-  M extends Partial<Record<keyof T, AllowedKeyType>> = Partial<Record<keyof T, AllowedKeyType>>
->(mapping: M, childrenKey: AllowedKeyType, root: T): R;
-export function mapTree<
-  T extends Record<AllowedKeyType, any>,
-  R extends ReturnType<M>,
-  M extends (node: T) => Record<AllowedKeyType, any> = (node: T) => Record<AllowedKeyType, any>
->(mapping: M, childrenKey: AllowedKeyType, root: T): R;
+type MapTreeMapping<T> = Partial<Record<keyof T, AllowedKeyType>>;
+type MapKeysIteratee<T> = (node: T) => Record<AllowedKeyType, any>;
 
-export function mapTree(mapping: any, childrenKey: any, root: any) {
+interface CurrinoMapTree {
+  <T extends Record<AllowedKeyType, any>, R extends Record<AllowedKeyType, any>>(iteratee: MapKeysIteratee<T>, childrenKey: AllowedKeyType, root: T): R;
+  <T extends Record<AllowedKeyType, any>, R extends Record<AllowedKeyType, any>>(iteratee: MapKeysIteratee<T>, childrenKey: AllowedKeyType): (root: T) => R;
+  <T extends Record<AllowedKeyType, any>, R extends Record<AllowedKeyType, any>>(iteratee: MapKeysIteratee<T>): (childrenKey: AllowedKeyType) => (root: T) => R;
+  <T extends Record<AllowedKeyType, any>, R extends DeepMappingKey<T, M>, M extends MapTreeMapping<T> = MapTreeMapping<T>>(mapping: M, childrenKey: AllowedKeyType, root: T): R;
+  <T extends Record<AllowedKeyType, any>, R extends DeepMappingKey<T, M>, M extends MapTreeMapping<T> = MapTreeMapping<T>>(mapping: M, childrenKey: AllowedKeyType): (root: T) => R;
+  <T extends Record<AllowedKeyType, any>, R extends DeepMappingKey<T, M>, M extends MapTreeMapping<T> = MapTreeMapping<T>>(mapping: M): (childrenKey: AllowedKeyType) => (root: T) => R;
+}
+
+export const mapTree: CurrinoMapTree = curry((mapping: any, childrenKey: any, root: any) => {
   const result = typeof mapping === 'function' ? mapping(root) : mapKeys(mapping, root);
 
   if (result) {
@@ -24,4 +26,4 @@ export function mapTree(mapping: any, childrenKey: any, root: any) {
   }
 
   return result;
-}
+});

@@ -18,6 +18,8 @@ export type DeepMappingKey<T, M extends Partial<Record<keyof T, AllowedKeyType>>
     : T[P];
 };
 
-export type ArrayLikeIterator<T, R> = (value: T, index: number, array: ArrayLike<T>) => R;
+export type ArrayLikeIteratee<T, R> = (value: T, index: number, array: ArrayLike<T>) => R;
 
-export type ObjectIterator<T, R> = (value: T[keyof T], key: string, object: T) => R;
+export type ObjectIteratee<T, R> = (value: T[keyof T], key: string, object: T) => R;
+
+export type GraphIteratee<T, R> = (value: T, path: AllowedKeyType[], graph: T) => R

@@ -1,9 +1,9 @@
-import type { ArrayLikeIterator } from './types/common';
+import type { ArrayLikeIteratee } from './types/common';
 import { curry } from './curry';
 
 interface CurrinoForEach {
-  <T>(iteratee: ArrayLikeIterator<T, any>, arrayLink: ArrayLike<T>): ArrayLike<T>;
-  <T>(iteratee: ArrayLikeIterator<T, any>): (arrayLink: ArrayLike<T>) => ArrayLike<T>;
+  <T>(iteratee: ArrayLikeIteratee<T, any>, arrayLink: ArrayLike<T>): ArrayLike<T>;
+  <T>(iteratee: ArrayLikeIteratee<T, any>): (arrayLink: ArrayLike<T>) => ArrayLike<T>;
 }
 
 export const forEach: CurrinoForEach = curry((iteratee: any, arrayLink: any) => {
