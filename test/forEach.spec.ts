@@ -1,8 +1,12 @@
 import { describe, expect, test } from 'vitest';
-import { forEach } from '../src'
+import { forEach } from '../src';
 
 describe('forEach', () => {
-  const list = [{ x: 1, y: 2 }, { x: 3, y: 4 }, { x: 5, y: 6 }];
+  const list = [
+    { x: 1, y: 2 },
+    { x: 3, y: 4 },
+    { x: 5, y: 6 },
+  ];
 
   test('performs the passed in function on each element of the list', () => {
     const sideEffect = {};
@@ -17,9 +21,11 @@ describe('forEach', () => {
   test('returns the original list', () => {
     let s = '';
 
-    expect(forEach((elem) => {
-      s += elem.x;
-    }, list)).toBe(list);
+    expect(
+      forEach((elem) => {
+        s += elem.x;
+      }, list)
+    ).toBe(list);
 
     expect(s).toBe('135');
   });
@@ -32,6 +38,18 @@ describe('forEach', () => {
       s += elem.x;
     }, list);
 
-    expect(s).toBe('13')
+    expect(s).toBe('13');
+  });
+
+  test('curried', () => {
+    let s = '';
+
+    expect(
+      forEach((elem) => {
+        s += elem.x;
+      })(list)
+    ).toBe(list);
+
+    expect(s).toBe('135');
   });
 });

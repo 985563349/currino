@@ -17,4 +17,11 @@ describe('mapKeys', () => {
       name: 'jee',
     });
   });
+
+  test('curried', () => {
+    expect(mapKeys({ id: 'value' })(object)).toStrictEqual({
+      value: 0,
+      name: 'jee',
+    });
+  });
 });

@@ -48,4 +48,22 @@ describe('searchTree', () => {
   test('should match empty array', () => {
     expect(searchTree((node) => node.id === '0-1-2', 'children', tree)).toBeNull();
   });
+
+  test('curried', () => {
+    const expected = {
+      id: '0',
+      children: [
+        {
+          id: '0-1',
+          children: [
+            {
+              id: '0-1-1',
+            },
+          ],
+        },
+      ],
+    };
+
+    expect(searchTree((node) => node.id === '0-1-1', 'children')(tree)).toMatchObject(expected);
+  });
 });

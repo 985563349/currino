@@ -27,4 +27,11 @@ describe('findTree', () => {
   test('should match null', () => {
     expect(findTree((node) => node.id === '0-2', 'children', tree)).toBeNull();
   });
+
+  test('curried', () => {
+    expect(findTree((node) => node.id === '0-1', 'children')(tree)).toMatchObject({
+      id: '0-1',
+      name: '0-1',
+    });
+  });
 });

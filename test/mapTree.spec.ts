@@ -33,4 +33,19 @@ describe('mapTree', () => {
       )
     ).toMatchObject(expected);
   });
+
+  test('curried', () => {
+    const expected = {
+      title: '0',
+      key: '0',
+      children: [
+        {
+          title: '0-0',
+          key: '0-0',
+        },
+      ],
+    };
+
+    expect(mapTree({ name: 'title', id: 'key' }, 'children', tree)).toMatchObject(expected);
+  });
 });
