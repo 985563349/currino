@@ -140,58 +140,6 @@ mapKeys(
 // => { a1: 1, a2: 2 }
 ```
 
-### 时间
-
-#### dateFormat
-
-```javascript
-dateFormat(template, timestamp);
-```
-
-根据传入的占位符和时间戳返回格式化后的时长。
-
-**参数**
-
-template (string): 格式化占位符。
-
-timestamp (number): 时间戳。
-
-**返回**
-
-(\*): 返回格式化后的时长。
-
-**示例**
-
-```javascript
-dateFormat('YYYY-MM-DD HH:mm:ss', 1678864849921);
-// => 2023-03-15 15:20:49
-```
-
-#### dateValueOf
-
-```javascript
-dateValueOf(template, date);
-```
-
-根据传入的占位符和格式化后的时长返回对应的时间戳。
-
-**参数**
-
-template (string): 格式化占位符。
-
-date (string): 格式化后的时长。
-
-**返回**
-
-(\*): 返回时间戳。
-
-**示例**
-
-```javascript
-dateValueOf('YYYY-MM-DD HH:mm:ss', '2023-03-15 15:20:49');
-// => 1678864849921
-```
-
 ### 树
 
 #### eachTree
@@ -413,5 +361,5 @@ Either(1, 2)
 Either(1, null)
   .map((x) => x + 1)
   .fold((x) => x);
-// => 2
+// => 1
 ```
