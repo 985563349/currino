@@ -43,7 +43,7 @@ interface CurrinoCurry {
 
 export const curry: CurrinoCurry = (func: Function) => {
   return function curried(this: any, ...args: any[]) {
-    if (args.length === func.length) {
+    if (args.length >= func.length) {
       return func.apply(this, args);
     } else {
       return function (this: any, ...innerArgs: any[]) {
