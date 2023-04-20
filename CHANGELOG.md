@@ -1,5 +1,12 @@
 
 
+### [1.0.1](https://github.com/985563349/currino/compare/v1.0.0...v1.0.1) (2023-04-20)
+
+
+### 🐛 Bug Fixes
+
+* curried function does not executed ([bd34097](https://github.com/985563349/currino/commit/bd34097298c89f85f57b5882cb3252a61d8611a8))
+
 ## [1.0.0](https://github.com/985563349/currino/compare/v0.0.2...v1.0.0) (2023-04-19)
 
 
