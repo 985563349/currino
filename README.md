@@ -18,7 +18,7 @@ npm install currino
 通过 unpkg CDN:
 
 ```html
-<script src="https://unpkg.com/currino@1.0.0/dist/currino.iife.js"></script>
+<script src="https://unpkg.com/currino@1.0.1/dist/currino.iife.js"></script>
 ```
 
 ## 🔨 使用
