@@ -18,7 +18,7 @@ npm install currino
 通过 unpkg CDN:
 
 ```html
-<script src="https://unpkg.com/currino@1.0.1/dist/currino.iife.js"></script>
+<script src="https://unpkg.com/currino@1.0.2/dist/currino.iife.js"></script>
 ```
 
 ## 🔨 使用
@@ -290,7 +290,7 @@ searchTree((node) => node.id === 4, 'children', tree);
 
 ### Promise
 
-#### Scheduler
+#### scheduler
 
 这个方法可以控制异步函数的并发数，方法将在所有异步结束后，返回异步的结果集。
 
@@ -301,9 +301,11 @@ scheduler(max, tasks);
 **参数**
 
 max (number)：最大并发数。
+
 tasks (Function[])：异步函数集合。
 
 **返回**
+
 (\*)：一个 Promise，终值为所有异步函数执行的结果集。
 
 **示例**
@@ -323,6 +325,27 @@ const tasks = [
 ];
 
 scheduler(2, tasks); // => 输出 Promise<[{ status: 'fulfilled', value: 1 }, { status: 'rejected', reason: 2 }]>
+```
+
+### 实用函数
+
+#### sleep
+
+```javascript
+sleep(1000);
+```
+
+同步阻塞程序，等待一定时间后再执行（也许会有用 😝）。
+
+**参数**
+
+wait (number)：需要睡眠的毫秒数。
+
+**示例**
+
+```javascript
+sleep(1000);
+console.log('hello currino!'); // => 延迟一秒后输出 hello currino!
 ```
 
 ### 函子
