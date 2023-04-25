@@ -288,6 +288,43 @@ searchTree((node) => node.id === 4, 'children', tree);
 // => 输出 { id: 1, children: [{ id: 3, children: [{ id: 4 }] }] }。
 ```
 
+### Promise
+
+#### Scheduler
+
+这个方法可以控制异步函数的并发数，方法将在所有异步结束后，返回异步的结果集。
+
+```javascript
+scheduler(max, tasks);
+```
+
+**参数**
+
+max (number)：最大并发数。
+tasks (Function[])：异步函数集合。
+
+**返回**
+(\*)：一个 Promise，终值为所有异步函数执行的结果集。
+
+**示例**
+
+```javascript
+const tasks = [
+  () => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(1), 200);
+    });
+  },
+  () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => reject(2), 100);
+    });
+  },
+];
+
+scheduler(2, tasks); // => 输出 Promise<[{ status: 'fulfilled', value: 1 }, { status: 'rejected', reason: 2 }]>
+```
+
 ### 函子
 
 #### Identity
