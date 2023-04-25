@@ -6,6 +6,7 @@ export { eachTree } from './eachTree';
 export { findTree } from './findTree';
 export { mapTree } from './mapTree';
 export { searchTree } from './searchTree';
+export { scheduler } from './scheduler';
 export { Identity } from './identity';
 export { Maybe } from './maybe';
 export { Either } from './either';
