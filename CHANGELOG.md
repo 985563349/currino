@@ -1,5 +1,13 @@
 
 
+### [1.0.2](https://github.com/985563349/currino/compare/v1.0.1...v1.0.2) (2023-04-26)
+
+
+### ✨ Features
+
+* add scheduler ([bcd5265](https://github.com/985563349/currino/commit/bcd52654379f0cea51367d39107a9d9a99bf4fb3))
+* add sleep ([c8bf90f](https://github.com/985563349/currino/commit/c8bf90f2fcddef079b0387f809bfe6d1af843b31))
+
 ### [1.0.1](https://github.com/985563349/currino/compare/v1.0.0...v1.0.1) (2023-04-20)
 
 
