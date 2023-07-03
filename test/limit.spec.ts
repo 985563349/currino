@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest';
-import { scheduler } from '../src';
+import { limit } from '../src';
 
-describe('scheduler', () => {
+describe('limit', () => {
   test('should get all asynchronous results', async () => {
-    const sideEffect = await scheduler(2, [
+    const sideEffect = await limit(2, [
       () => {
         return new Promise((resolve) => {
           setTimeout(() => resolve(1), 300);
@@ -29,7 +29,7 @@ describe('scheduler', () => {
   });
 
   test('curried', async () => {
-    const sideEffect = await scheduler(2)([() => Promise.resolve(1), () => Promise.reject(2)]);
+    const sideEffect = await limit(2)([() => Promise.resolve(1), () => Promise.reject(2)]);
 
     expect(sideEffect).toStrictEqual([
       { status: 'fulfilled', value: 1 },

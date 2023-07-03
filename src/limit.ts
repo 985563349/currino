@@ -1,17 +1,17 @@
 import { curry } from './curry';
 
-type SchedulerResult<T> = PromiseFulfilledResult<T> | PromiseRejectedResult;
+type LimitResult<T> = PromiseFulfilledResult<T> | PromiseRejectedResult;
 
-interface CurrinoScheduler {
+interface CurrinoLimit {
   <T extends readonly (() => Promise<unknown>)[] | []>(max: number, tasks: T): Promise<{
-    -readonly [P in keyof T]: SchedulerResult<Awaited<ReturnType<T[P]>>>;
+    -readonly [P in keyof T]: LimitResult<Awaited<ReturnType<T[P]>>>;
   }>;
   <T extends readonly (() => Promise<unknown>)[] | []>(max: number): (tasks: T) => Promise<{
-    -readonly [P in keyof T]: SchedulerResult<Awaited<ReturnType<T[P]>>>;
+    -readonly [P in keyof T]: LimitResult<Awaited<ReturnType<T[P]>>>;
   }>;
 }
 
-export const scheduler: CurrinoScheduler = curry((max: any, tasks: any) => {
+export const limit: CurrinoLimit = curry((max: any, tasks: any) => {
   if (tasks.length <= 0) return Promise.resolve([] as any);
 
   return new Promise((resolve) => {

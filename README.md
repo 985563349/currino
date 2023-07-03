@@ -290,12 +290,12 @@ searchTree((node) => node.id === 4, 'children', tree);
 
 ### Promise
 
-#### scheduler
+#### limit
 
 这个方法可以控制异步函数的并发数，方法将在所有异步结束后，返回异步的结果集。
 
 ```javascript
-scheduler(max, tasks);
+limit(max, tasks);
 ```
 
 **参数**
@@ -324,7 +324,7 @@ const tasks = [
   },
 ];
 
-scheduler(2, tasks); // => 输出 Promise<[{ status: 'fulfilled', value: 1 }, { status: 'rejected', reason: 2 }]>
+limit(2, tasks); // => 输出 Promise<[{ status: 'fulfilled', value: 1 }, { status: 'rejected', reason: 2 }]>
 ```
 
 ### 实用函数
