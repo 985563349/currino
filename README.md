@@ -117,7 +117,7 @@ mapKeys(mapping, object);
 
 **参数**
 
-mapping (Object|Function): 每次迭代时获取 key 的映射。
+iteratee (Function): 每次迭代调用的函数。
 
 object (Object): 一个用来迭代的对象。
 
@@ -128,9 +128,6 @@ object (Object): 一个用来迭代的对象。
 **示例**
 
 ```javascript
-mapKeys({ b: 'c' }, { a: 1, b: 2 });
-// => { a: 1, c: 2 }
-
 mapKeys(
   (value, key) => {
     return key + value;
@@ -339,7 +336,7 @@ sleep(1000);
 
 **参数**
 
-wait (number)：需要睡眠的毫秒数。
+timeout (number)：需要睡眠的毫秒数。
 
 **示例**
 
