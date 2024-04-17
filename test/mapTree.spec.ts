@@ -46,6 +46,12 @@ describe('mapTree', () => {
       ],
     };
 
-    expect(mapTree({ name: 'title', id: 'key' }, 'children', tree)).toMatchObject(expected);
+    expect(
+      mapTree((node) => ({
+        title: node.name,
+        key: node.id,
+        children: node.children,
+      }))('children')(tree)
+    ).toMatchObject(expected);
   });
 });

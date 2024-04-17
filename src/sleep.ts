@@ -1,7 +1,7 @@
-export const sleep = (wait: number) => {
-  const now = Date.now();
+export const sleep = (timeout: number) => {
+  const start = Date.now();
 
-  while (Date.now() - now < wait) {
+  while (Date.now() - start < timeout) {
     // sleep...
   }
 };
